@@ -134,11 +134,43 @@ class Admin extends Controller
         $data['orders'] =   $orders ;
 
         $data['page_title'] = "Admin - Danh Sách Đơn Hàng";
-
-
-
         $this->view("admin/orders", $data);
     }
 
+    //method for show user customer or admin in left sidebar Users of admin
+    function users($type = "customers"){
+
+        // Load class name 'user' & 'order' exists in folder models
+        $User = $this->load_model('User');
+        $Order = $this->load_model('Order');
+
+        //check login success or not, user has rank 'Admin' or not
+        $user_data = $User->check_login(true, ["Admin"]);
+
+        //if success get information login
+        if (is_object($user_data)) {
+            $data['user_data'] = $user_data;
+        }
+
+       if($type == "customers"){
+            $users = $User->get_customers();
+            $data['page_title'] = "Admin - Khách Hàng";
+        }
+
+       if($type == "admins"){
+           $users = $User->get_admins();
+           $data['page_title'] = "Admin - Admin";
+       }
+
+       //Count all order of one user
+       if(is_array($users)){
+           foreach ($users as $key => $row){
+               $orders_number =  $Order->get_order_count_one_user($row->user_url_address);
+               $users[$key]->order_count = $orders_number;
+           }
+       }
+        $data['users'] =   $users ;
+        $this->view("admin/users", $data);
+    }
 
 }

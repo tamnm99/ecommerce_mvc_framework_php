@@ -271,13 +271,44 @@ class User
 
         $arr = false;
 
-
         $arr['user_url_address'] = addslashes($user_url_address);
         $query = "SELECT * FROM tbl_user WHERE user_url_address = :user_url_address limit 1";
 
         $result = $db->read_db($query, $arr);
         if(is_array($result)) {
             return $result[0];
+        }
+
+        return false;
+    }
+
+    //return all user is customer in tbl_user
+    public function get_customers(){
+        $db = Database::newInstance();
+        $arr = false;
+
+        $arr['user_rank'] = "Khách Hàng";
+        $query = "SELECT * FROM tbl_user WHERE user_rank = :user_rank";
+
+        $result = $db->read_db($query, $arr);
+        if(is_array($result)) {
+            return $result;
+        }
+
+        return false;
+    }
+
+    //return all user is admin in tbl_user
+    public function get_admins(){
+        $db = Database::newInstance();
+        $arr = false;
+
+        $arr['user_rank'] = "Admin";
+        $query = "SELECT * FROM tbl_user WHERE user_rank = :user_rank";
+
+        $result = $db->read_db($query, $arr);
+        if(is_array($result)) {
+            return $result;
         }
 
         return false;

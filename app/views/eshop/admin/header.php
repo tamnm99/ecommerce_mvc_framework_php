@@ -23,6 +23,9 @@
     <link href="<?= ASSETS . THEME ?>admin/css/style.css" rel="stylesheet">
     <link href="<?= ASSETS . THEME ?>admin/css/style-responsive.css" rel="stylesheet">
 
+   <!-- My icon for font awesome-->
+    <script src="https://kit.fontawesome.com/2818147cbc.js" crossorigin="anonymous"></script>
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>

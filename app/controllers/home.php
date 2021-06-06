@@ -38,7 +38,5 @@ Class Home extends Controller{
         $this->view("index", $data);
     }
 
-   
-
 
 }

@@ -42,11 +42,12 @@
         <!--header_top-->
         <div class="container">
             <div class="row">
-                <div class="col-sm-6">
-                    <div class="contactinfo">
+                <div class="col-sm-8">
+                    <div class="contactinfo pull-left">
                         <ul class="nav nav-pills">
                             <li><a href="#"><i class="fa fa-phone"></i>  0388489308</a></li>
                             <li><a href="#"><i class="fa fa-envelope"></i>  tamnm1999@gmail.com</a></li>
+                            <li><a href="https://github.com/tamnm99"><i class="fa fa-github"></i> https://github.com/tamnm99</a></li>
 
                             <!--show user data if user log in success-->
                             <?php if (isset($data['user_data'])): ?>
@@ -57,14 +58,11 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="social-icons pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://www.facebook.com/tam.nguyenmanh.737/"><i class="fa fa-facebook"></i></a></li>
                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -81,37 +79,14 @@
                     <div class="logo pull-left">
                         <a href="<?= ROOT ?>"><img src="<?= ASSETS . THEME ?>images/home/logo.png" alt=""/></a>
                     </div>
-                    <div class="btn-group pull-right">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                VIỆT NAM
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Hà Nội</a></li>
-                                <li><a href="#">Hồ Chí Minh</a></li>
-                            </ul>
-                        </div>
-
-<!--                        <div class="btn-group">-->
-<!--                            <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">-->
-<!--                                DOLLAR-->
-<!--                                <span class="caret"></span>-->
-<!--                            </button>-->
-<!--                            <ul class="dropdown-menu">-->
-<!--                                <li><a href="#">Canadian Dollar</a></li>-->
-<!--                                <li><a href="#">Pound</a></li>-->
-<!--                            </ul>-->
-<!--                        </div>-->
-                    </div>
                 </div>
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
 
                             <!--user login is Admin, show link to profile.php of admin-->
-                            <?php if (isset($data['user_data']) && ($data['user_data']->user_rank == 'Admin')): ?>
-                                <li><a href="<?= ROOT ?>profile"><i class="fa fa-user"></i>Tài Khoản</a></li>
+                            <?php if (isset($data['user_data'])): ?>
+                                <li><a href="<?= ROOT ?>profile/<?= $data['user_data']->user_url_address?>"><i class="fa fa-user"></i>Tài Khoản</a></li>
                             <?php endif; ?>
                             <li><a href="<?= ROOT ?>"><i class="fa fa-star"></i> Yêu Thích</a></li>
                             <li><a href="<?= ROOT ?>checkout"><i class="fa fa-crosshairs"></i> Thanh Toán</a></li>
@@ -119,9 +94,9 @@
 
                             <!--user login, link Login change to link Logout-->
                             <?php if (isset($data['user_data'])): ?>
-                                <li><a href="logout"><i class="fa fa-lock"></i> Đăng Xuất</a></li>
+                                <li><a href="<?= ROOT ?>logout"><i class="fa fa-lock"></i> Đăng Xuất</a></li>
                             <?php else: ?>
-                                <li><a href="login"><i class="fa fa-lock"></i> Đăng Nhập</a></li>
+                                <li><a href="<?= ROOT ?>login"><i class="fa fa-lock"></i> Đăng Nhập</a></li>
                             <?php endif; ?>
                         </ul>
                     </div>
@@ -147,24 +122,11 @@
                     </div>
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a href="<?= ROOT ?>" class="active">Trang Chủ</a></li>
-                            <li class="dropdown"><a href="#">Cửa Hàng<i class="fa fa-angle-down"></i></a>
-                                <ul role="menu" class="sub-menu">
-                                    <li><a href="<?= ROOT ?>shop">Sản Phẩm</a></li>
-                                    <li><a href="<?= ROOT ?>">Chi tiết Sản Phẩm</a></li>
-                                    <li><a href="<?= ROOT ?>">Thanh Toán</a></li>
-                                    <li><a href="<?= ROOT ?>cart">Giỏ Hàng</a></li>
-                                    <li><a href="<?= ROOT ?>">Đăng Nhập</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                <ul role="menu" class="sub-menu">
-                                    <li><a href="<?= ROOT ?>blog">Blog List</a></li>
-                                    <li><a href="<?= ROOT ?>blog-single">Blog Single</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="<?= ROOT ?>404">404</a></li>
-                            <li><a href="<?= ROOT ?>contact-us">Liên Hệ</a></li>
+
+                            <li><a href="<?= ROOT ?>" class="<?= $page_title == "Trang Chủ" ? "active" : "";?>">Trang Chủ</a></li>
+                            <li><a href="<?= ROOT ?>shop" class="<?= $page_title == "Cửa Hàng" ? "active" : "";?>">Cửa Hàng</a></li>
+                            <li><a href="<?= ROOT ?>blog" class="<?= $page_title == "Blog" ? "active" : "";?>">Blog</a></li>
+                            <li><a href="<?= ROOT ?>contact-us" class="<?= $page_title == "Liên Hệ" ? "active" : "";?>">Liên Hệ</a></li>
                         </ul>
                     </div>
                 </div>

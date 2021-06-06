@@ -1,8 +1,8 @@
-<!--This file is page of Checkout-->
+<!--This file is page of Checkout Summary-->
 
 <?php $this->view("header", $data); ?>
 
-<!--Validation in checkout page-->
+<!--Validation in checkout summary page-->
 <?php
 if (isset($errors) && count($errors) > 0) {
     echo "<div>";
@@ -25,98 +25,110 @@ if (isset($errors) && count($errors) > 0) {
         <!--/breadcrums-->
 
         <!--If cart has item, client will see checkout page-->
-        <?php if (is_array($ROWS)): ?>
+        <?php if (is_array($orders)): ?>
             <div class="register-req">
-                <p>
-                    Vui lòng Đăng Nhập hoặc Đăng Ký thành viên để có thể dễ dàng trong việc Đặt Hàng và Thanh Toán
+                <p style="text-align: center">
+                    Vui lòng kiểm tra lại thông tin thanh toán trước khi hoàn tất đặt hàng.
                 </p>
             </div><!--/register-req-->
 
-            <!--If form checkout have error of validation. Retaining information of form checkout-->
-            <?php
-            $address = "";
-            $postal_code = "";
-            $city = "";
-            $district = "";
-            $note = "";
-            $phone_number = "";
 
-            if (isset($POST_DATA)) {
-                extract($POST_DATA);
-            }
-            ?>
-            <form method="POST">
-                <div class="shopper-informations">
+            <?php foreach ($orders as $row): ?>
+                <?php
+                $row = (object)$row;
+                $row->id = 0;
+                ?>
 
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <div class="bill-to">
-                                <p>Đơn Hàng Tới </p>
-                                <div class="form-one">
+                <div class="js-order-details details">
 
-                                    <input name="address"  value="<?= $address?>" class="form-control" type="text" placeholder="Địa chỉ *"
-                                           required><br>
+                    <!--Order Details-->
+                    <div style="display: flex;">
+                        <table class="table" style=" flex: 1; margin: 4px">
+                            <tr>
+                                <th>Thành Phố/Tỉnh:</th>
+                                <td> <?= $row->city ?></td>
+                            <tr>
 
-                                    <input name="postal_code" class="form-control" value="<?= $postal_code?>" type="text"
-                                           placeholder="Zip/Mã Bưu Điện *" required><br>
+                            <tr>
+                                <th>Quận/Huyện:</th>
+                                <td> <?= $row->district ?></td>
+                            </tr>
 
-                                </div>
-                                <div class="form-two">
+                            <tr>
+                                <th>Địa chỉ giao hàng:</th>
+                                <td><?= $row->address ?></td>
+                            </tr>
+                        </table>
+                        <table class="table" style="flex: 1; margin: 4px">
+                            <tr>
+                                <th>Số Điện Thoại:</th>
+                                <td><?= $row->phone_number ?></td>
+                            </tr>
 
-                                    <select name="city" value="<?= $city?>" class="js-city form-control" oninput="get_districts(this.value)"
-                                            required>
-                                        <option>-- Thành Phố/ Tỉnh --</option>
-                                        <?php if (isset($cities) && $cities) : ?>
-                                            <?php foreach ($cities as $row) : ?>
-                                                <option value="<?= $row->id ?>"> <?= $row->city ?></option>
+                            <tr>
+                                <th>Ngày:</th>
+                                <td><?= date("d/m/Y") ?></td>
+                            </tr>
 
-                                            <?php endforeach; ?>
-                                        <?php endif; ?>
-                                    </select><br>
-
-                                    <select name="district" value="<?= $district?>" class="js-district form-control" required>
-                                        <option>-- Quận/Huyện --</option>
-
-                                    </select><br>
-
-                                    <input name="phone_number" value="<?= $phone_number?>" type="text" class="form-control"
-                                           placeholder="Số Điện Thoại *" required><br>
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-sm-4">
-                            <div class="order-message">
-                                <p>Ghi Chú</p>
-                                <textarea name="note"
-                                          placeholder="Bạn muốn lưu ý gì cho Đơn Hàng này ?"
-                                          rows="6 "><?= $note ?> </textarea>
-
-                            </div>
-                        </div>
-                        <a href="<?= ROOT ?>cart" class="pull-left">
-                            <input type="button" class="btn btn-success pull-right" value="<--  Giỏ Hàng " name="">
-                        </a>
-
-                        <input type="submit" class="btn btn-info pull-right" value=" Tiếp Tục -->" name="">
-                        <!--<input type="submit" class="btn btn-info pull-right" value=" Thanh Toán  -->" name="">-->
+                            <tr>
+                                <th>Ghi Chú:</th>
+                                <td><?= $row->note ?></td>
+                            </tr>
+                        </table>
                     </div>
-            </form>
+                    <hr>
+                    <h3>Tóm Tắt Đơn Hàng</h3>
+
+                    <table class="table">
+
+                        <thead>
+                        <tr>
+                            <th>Mô Tả</th>
+                            <th>Đơn Giá</th>
+                            <th>Số Lượng</th>
+                            <th>Thành Tiền</th>
+                        </tr>
+                        </thead>
+
+                        <?php if ((isset($order_details) && is_array($order_details))): ?>
+                            <?php foreach ($order_details as $detail): ?>
+                                <tbody>
+                                <tr>
+                                    <td><?= $detail->description ?></td>
+                                    <td><?= number_format($detail->price, 0, ',') ?> ₫</td>
+                                    <td><?= $detail->cart_quantity ?></td>
+                                    <td><?= number_format($detail->cart_quantity * $detail->price,
+                                            0, ',') ?> ₫
+                                    </td>
+                                </tr>
+                                </tbody>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <div class="text-center">
+                                Không có dữ liệu chi tiết trong Đơn Hàng này
+                            </div>
+                        <?php endif; ?>
+                    </table>
+                    <h3 class="pull-right">Tổng Tiền: <?= number_format($sub_total, 0, ',') ?> ₫ </h3>
+                </div>
+            <?php endforeach; ?>
 
             <!--Else client will see notification-->
         <?php else: ?>
-            <div style="margin-top: 50px; margin-bottom: 50px">
-                <h3 class="text-center">
-                    Vui lòng thêm Mặt Hàng vào trong Giỏ Hàng rồi mới Thanh Toán
-                </h3>
-                <br>
-                <a href="<?= ROOT ?>checkout" class="pull-left">
-                    <input type="button" class="btn btn-success pull-right" value="<--  Thanh Toán " name="">
-                </a>
-            </div>
+            <h3 class="text-center">
+                Vui lòng thêm Mặt Hàng vào trong Giỏ Hàng rồi mới Thanh Toán
+            </h3>
+
         <?php endif; ?>
+        <br style="clear: both">
+        <a href="<?= ROOT ?>checkout" class="pull-left" style="margin-bottom: 30px">
+            <input type="button" class="btn btn-success pull-left" value="<--  Thanh Toán " name="">
+        </a>
+
+        <!--Form with only metho post to link to "thank you" page-->
+        <form method="POST">
+            <input type="submit" class="btn btn-info pull-right" value=" Tiếp Tục -->" name="">
+        </form>
 
     </div> <!--/#container-->
 

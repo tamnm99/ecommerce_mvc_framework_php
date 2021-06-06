@@ -34,52 +34,57 @@
             </style>
 
             <!-- WHITE PANEL - MY ACCOUNT PROFILE DATA -->
-            <div class="col-md-4 mb"
-                 style=" background-color: #eee; text-align: center; box-shadow: 0px 0px 20px #aaa;">
 
-                <div class="white-panel pn">
-                    <div class="white-header" style="color:grey">
-                        <h5>HỒ SƠ TÀI KHOẢN</h5>
-                    </div>
-                    <p><img src="<?= ASSETS . THEME ?>/admin/img/ui-zac.jpg" class="img-circle" width="80"></p>
-                    <p><b><?= $data['user_data']->user_full_name ?></b></p>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p id="user_text" class="small mt">THÀNH VIÊN KỂ TỪ</p>
-                            <p><?= date("m/Y", strtotime($data['user_data']->user_date_join)) ?></p>
+            <!--If has profile data in database-->
+            <?php if (is_object($profile_data)): ?>
+
+                <div class="col-md-4 mb"
+                     style=" background-color: #eee; text-align: center; box-shadow: 0px 0px 20px #aaa;">
+
+                    <div class="white-panel pn">
+                        <div class="white-header" style="color:grey">
+                            <h5>HỒ SƠ TÀI KHOẢN</h5>
                         </div>
-                        <div class="col-md-6">
-                            <p id="user_text" class="small mt">TỔNG CHI TIÊU</p>
-                            <p>$ 47,60</p>
+                        <p><img src="<?= ASSETS . THEME ?>/admin/img/ui-zac.jpg" class="img-circle" width="80"></p>
+                        <p><b><?= $profile_data->user_full_name ?></b></p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p id="user_text" class="small mt">THÀNH VIÊN KỂ TỪ</p>
+                                <p><?= date("m/Y", strtotime($profile_data->user_date_join)) ?></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p id="user_text" class="small mt">TỔNG CHI TIÊU</p>
+                                <p>$ 47,60</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <hr>
+                        <hr>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p id="user_text" class="small mt" style="cursor: pointer; color:green;">
-                                <i class="fa fa-edit"> SỬA </i>
-                            </p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p id="user_text" class="small mt" style="cursor: pointer; color:green;">
+                                    <i class="fa fa-edit"> SỬA </i>
+                                </p>
 
-                        </div>
-                        <div class="col-md-6">
-                            <p id="user_text" class="small mt" style="cursor: pointer; color:red">
-                                <i class="fa fa-trash-o"> XÓA </i>
-                            </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p id="user_text" class="small mt" style="cursor: pointer; color:red">
+                                    <i class="fa fa-trash-o"> XÓA </i>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div><!-- /col-md-4 -->
-            <!-- END MY ACCOUNT PROFILE DATA -->
+                <!-- /col-md-4 -->
+                <!-- END MY ACCOUNT PROFILE DATA -->
 
-            <br>
-            <br style="clear:both">
+                <br>
+                <br style="clear:both">
 
-            <!--If this user have order online-->
-            <?php if (is_array($orders)): ?>
-                <table class="table" style="margin-top: 20px; margin-bottom: 20px;">
-                    <thead>
+                <!--If this user have order online-->
+                <?php if (is_array($orders)): ?>
+                    <table class="table" style="margin-top: 20px; margin-bottom: 20px;">
+                        <thead>
                         <tr>
                             <th>ID Đơn Hàng</th>
                             <th>Ngày Đặt</th>
@@ -90,9 +95,9 @@
                             <th>Tổng Tiền (VNĐ)</th>
                             <th style="color:green;">Xem Chi Tiết</th>
                         </tr>
-                    </thead>
+                        </thead>
 
-                    <tbody onclick="show_detail(event)">
+                        <tbody onclick="show_detail(event)">
                         <?php foreach ($orders as $row): ?>
                             <tr style="position: relative; cursor: pointer;">
                                 <td> <?= $row->id ?></td>
@@ -104,11 +109,11 @@
                                 <td> <?= number_format($row->total, 0, ',') ?></td>
                                 <td>
                                     <i class="fa fa-arrow-down" style="color:green; cursor: pointer;"></i>
-                                    <div class="js-order-details details hide"">
-                                        <a style="float: right; cursor: pointer; margin-bottom: 5px">Đóng</a>
-                                        <h3> ID Đơn Hàng #<?=$row->id?>  </h3>
-                                        <table class="table">
+                                    <div class="js-order-details details hide">
 
+                                        <a style="float: right; cursor: pointer; margin-bottom: 5px">Đóng</a>
+                                        <h3> ID Đơn Hàng #<?= $row->id ?>  </h3>
+                                        <table class="table">
                                             <thead>
                                             <tr>
                                                 <th>Mô Tả</th>
@@ -122,31 +127,42 @@
                                                 <?php foreach ($row->details as $detail): ?>
                                                     <tbody>
                                                     <tr>
-                                                        <td><?=$detail->description?></td>
-                                                        <td><?=number_format($detail->amount,0, ',')?></td>
-                                                        <td><?=$detail->quantity?></td>
-                                                        <td><?=number_format($detail->total,0, ',')?></td>
+                                                        <td><?= $detail->description ?></td>
+                                                        <td><?= number_format($detail->amount, 0,
+                                                                ',') ?></td>
+                                                        <td><?= $detail->quantity ?></td>
+                                                        <td><?= number_format($detail->total, 0,
+                                                                ',') ?></td>
                                                     </tr>
                                                     </tbody>
                                                 <?php endforeach; ?>
                                             <?php else: ?>
-                                                <div>
-                                                    Không có dữ liệu chi tiết trong Đơn Hàng này
-                                                </div>
+                                                <div> Không có dữ liệu chi tiết trong Đơn Hàng này</div>
                                             <?php endif; ?>
                                         </table>
-                                    <h3 class="pull-right">Tổng Tiền: <?=number_format($row->grand_total,0, ',')?></h3>
+                                        <h3 class="pull-right">Tổng Tiền: <?= number_format($row->grand_total,
+                                                0, ',') ?></h3>
+                                    </div>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
-                     </tbody>
-                </table>
+                        </tbody>
+                    </table>
+
+               <!-- If this user has 0 ordern online-->
+                <?php else: ?>
+                    <h3 class="text-center"> Tài Khoản chưa đặt Đơn Hàng nào</h3>
+                <?php endif; ?>
+
+                <!--If has no profile data in database, show notification-->
             <?php else: ?>
-                <div> Tài Khoản chưa đặt Đơn Hàng nào  </div>
+                <h3 class="text-center">Không tìm thấy Hồ Sơ thông tin cá nhân của Tài Khoản này !!!</h3>
             <?php endif; ?>
         </div>
-    </section>
+    </div>
+
 </section>
+
 
 <script type="text/javascript">
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 05, 2021 lúc 05:33 AM
+-- Thời gian đã tạo: Th6 06, 2021 lúc 04:19 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -122,7 +122,11 @@ CREATE TABLE `tbl_orders` (
 INSERT INTO `tbl_orders` (`id`, `user_url_address`, `delivery_address`, `total`, `city`, `district`, `zip`, `tax`, `shipping`, `date`, `session_id`, `phone_number`, `note`) VALUES
 (1, 'svDMFE9wkM1ft5ylkL8lA2IGd0yP0oGWaCH1DeVCuKpqbfN1zq', '38 trần nhật duật hà đông', 998000, 'Hà Nội', 'Hà Đông', '1', 0, 0, '2021-06-04', 'mgpb9drfqrbn5gn3l4ksivu7d3', '1688489308', NULL),
 (2, 'svDMFE9wkM1ft5ylkL8lA2IGd0yP0oGWaCH1DeVCuKpqbfN1zq', 'triều đông,tân minh,thường tín,hà nội', 598000, 'Hà Nội', 'Thường Tín', '113132', 0, 0, '2021-06-05', 'ftilvtpnqgsq0u4u1e6kfuo8tj', '123456789', NULL),
-(6, 'svDMFE9wkM1ft5ylkL8lA2IGd0yP0oGWaCH1DeVCuKpqbfN1zq', 'triều đông,tân minh,thường tín,hà nội', 598000, 'Hà Nội', 'Thường Tín', '113132', 0, 0, '2021-06-05', 'ftilvtpnqgsq0u4u1e6kfuo8tj', '0388489308', 'take note');
+(6, 'svDMFE9wkM1ft5ylkL8lA2IGd0yP0oGWaCH1DeVCuKpqbfN1zq', 'triều đông,tân minh,thường tín,hà nội', 598000, 'Hà Nội', 'Thường Tín', '113132', 0, 0, '2021-06-05', 'ftilvtpnqgsq0u4u1e6kfuo8tj', '0388489308', 'take note'),
+(7, 'svDMFE9wkM1ft5ylkL8lA2IGd0yP0oGWaCH1DeVCuKpqbfN1zq', 'triều đông,tân minh,thường tín,hà nội', 299000, 'Hà Nội', 'Hà Đông', '113132', 0, 0, '2021-06-05', 'jv2ac7hqlfpk58fro2d06cqdcl', '0388489308', '   abc'),
+(8, 'svDMFE9wkM1ft5ylkL8lA2IGd0yP0oGWaCH1DeVCuKpqbfN1zq', 'triều đông,tân minh,thường tín,hà nội', 299000, 'Hà Nội', 'Hà Đông', '113132', 0, 0, '2021-06-05', 'jv2ac7hqlfpk58fro2d06cqdcl', '0388489308', '   abc '),
+(9, 'svDMFE9wkM1ft5ylkL8lA2IGd0yP0oGWaCH1DeVCuKpqbfN1zq', 'a', 129000, 'Bắc Giang', 'Yên Dũng', 'a', 0, 0, '2021-06-06', 'pb0qv21varr0pjapcj84ata2b6', 'a', '  1'),
+(10, 's5kCwVYWl6UpYoJ3ZM9IX25Rk1QSmTZUf5sDRcDpht9M8tx2RgpMrxduR', 'thọ giáo, tân minh, thường tín hà nội', 798000, 'Hà Nội', 'Thường Tín', '99', 0, 0, '2021-06-06', 'h3n37uo6ejv1shif47fldrlvi1', '0388735381', 'Giao hàng đúng giờ nhé !');
 
 -- --------------------------------------------------------
 
@@ -150,7 +154,11 @@ INSERT INTO `tbl_order_details` (`id`, `order_id`, `quantity`, `description`, `a
 (3, 3, 2, 'NỮ DRY-EX CROPPED SLEEVELESS T-SHIRT', 299000, 598000, 2),
 (4, 4, 2, 'NỮ DRY-EX CROPPED SLEEVELESS T-SHIRT', 299000, 598000, 2),
 (5, 5, 2, 'NỮ DRY-EX CROPPED SLEEVELESS T-SHIRT', 299000, 598000, 2),
-(6, 6, 2, 'NỮ DRY-EX CROPPED SLEEVELESS T-SHIRT', 299000, 598000, 2);
+(6, 6, 2, 'NỮ DRY-EX CROPPED SLEEVELESS T-SHIRT', 299000, 598000, 2),
+(7, 7, 1, 'NỮ DRY-EX CROPPED SLEEVELESS T-SHIRT', 299000, 299000, 2),
+(8, 8, 1, 'NỮ DRY-EX CROPPED SLEEVELESS T-SHIRT', 299000, 299000, 2),
+(9, 9, 1, 'TRẺ EM Quần Lửng DRY-EX', 129000, 129000, 6),
+(10, 10, 2, 'NỮ AIRism SEAMLESS V NECK LONG T-SHIRT', 399000, 798000, 1);
 
 -- --------------------------------------------------------
 
@@ -305,13 +313,13 @@ ALTER TABLE `tbl_districts`
 -- AUTO_INCREMENT cho bảng `tbl_orders`
 --
 ALTER TABLE `tbl_orders`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_order_details`
 --
 ALTER TABLE `tbl_order_details`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_products`

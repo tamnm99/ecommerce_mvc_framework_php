@@ -9,7 +9,6 @@ Class Logout extends Controller
 	{
 		$User = $this->load_model('User');
         $User -> logout();
-
 	}
 
 

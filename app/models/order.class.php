@@ -4,24 +4,37 @@ class Order extends Controller
 {
     public $errors = array();
 
-    //valiate information of form checkout
+    //validate information of form checkout
     public function validate($POST){
 
         $this->errors = array();
 
-        //loop through all value in checkout to validation
+        //loop through all value in checkout form to validation
         foreach ($POST as $key => $value){
             if($key == "city"){
                 if($value == "" || $value == "-- Thành Phố/ Tỉnh --"){
-                    $this->errors[] = "Vui lòng chọn Thành Phố hoặc Tỉnh mà bạn muốn giao hàng";
+                    $this->errors[] = "Vui lòng chọn Thành Phố hoặc Tỉnh mà bạn muốn giao hàng !";
                 }
             }
 
             if($key == "district"){
                 if($value == "" || $value == "-- Quận/Huyện --"){
-                    $this->errors[] = "Vui lòng chọn Quận hoặc Huyện mà bạn muốn giao hàng";
+                    $this->errors[] = "Vui lòng chọn Quận hoặc Huyện mà bạn muốn giao hàng !";
                 }
             }
+
+            if($key == "address"){
+                if(empty($value)){
+                    $this->errors[] = "Vui lòng điền địa chỉ mong muốn hàng được giao đến !";
+                }
+            }
+
+            if($key == "phone_number"){
+                if(empty($value)){
+                    $this->errors[] = "Vui lòng điền số điện thoại của người nhận hàng !";
+                }
+            }
+
         }
     }
 
@@ -102,6 +115,22 @@ class Order extends Controller
         $query = "SELECT * FROM tbl_orders WHERE user_url_address = :user_url_address ORDER BY id DESC 
                 LIMIT 100";
         $orders = $DB->read_db($query, $data);
+
+        return $orders;
+
+    }
+
+    //Count all orders of 1 user
+    public function get_order_count_one_user($user_url_address){
+
+        $DB = Database::newInstance();
+        $data['user_url_address'] = $user_url_address;
+
+        $query = "SELECT id FROM tbl_orders WHERE user_url_address = :user_url_address  ";
+        $result = $DB->read_db($query, $data);
+
+        //Store in variable $orders
+        $orders = is_array($result) ? count($result) : 0;
 
         return $orders;
 

@@ -96,7 +96,7 @@ class Checkout extends Controller
         $this->view("checkout", $data);
     }
 
-    //page checkout/summary
+    //method of page checkout.summary
     public function summary()
     {
 
@@ -114,12 +114,49 @@ class Checkout extends Controller
 
         $data['page_title'] = "Tóm Tắt Thanh Toán";
 
+        //Get data
+        $DB = Database::newInstance();
+        $ROWS = false;
+        $product_id = array();
+        if (isset($_SESSION['CART'])) {
+
+            //get all value in column $_SESSION['CART'] and store in array $product_id
+            $product_id = array_column($_SESSION['CART'], 'id');
+
+            //String contain all values in array $product_id
+            $id_str = "'" . implode("','", $product_id) . "'";
+
+            //Get all product in DB via value of $id_string
+            $ROWS = $DB->read_db("SELECT * FROM tbl_products WHERE id IN ($id_str)");
+
+        }
+
+        //Add new column 'cart_quantity' into $ROWS[$key]
+        if (is_array($ROWS)) {
+            foreach ($ROWS as $key => $row) {
+                foreach ($_SESSION['CART'] as $cart) {
+                    if ($row->id == $cart['id']) {
+                        $ROWS[$key]->cart_quantity = $cart['quantity'];
+                        break;
+                    }
+                }
+            }
+        }
+
+        //Calculate sub_total of one order
+        $data['sub_total'] = 0;
+        if ($ROWS) {
+            foreach ($ROWS as $key => $row) {
+                $myTotal = $row->price * $row->cart_quantity;
+                $data['sub_total'] += $myTotal;
+            }
+        }
+
+        $data['order_details'] = $ROWS;
+        $data['orders'][]= $_SESSION['POST_DATA'];
+
         //When click Thanh Toán, form will be POST and save information form to database
         if ($_SERVER['REQUEST_METHOD'] == "POST" && isset( $_SESSION['POST_DATA'])) {
-
-            /* show($_POST);
-            show($ROWS);
-            show($_SESSION);*/
 
             $session_id = session_id();
             $user_url_address = 0;
@@ -135,15 +172,27 @@ class Checkout extends Controller
 
             $order = $this->load_model("Order");
             $order->save_checkout($_SESSION['POST_DATA'], $ROWS, $user_url_address, $session_id);
-
             $data['errors'] = $order->errors;
 
+            //After order online is completed, unset variable in $_Session
+            unset($_SESSION['POST_DATA']);
+            unset($_SESSION['CART']);
 
+            //Redirect to page thank you
+            header("Location:" .ROOT. "checkout/thank_you");
+            die;
         }
 
-        //show index.php with data
+        //show checkout.summary.php with data
         $this->view("checkout.summary", $data);
 
+    }
+
+    //Redirect to page thank_you after completed order online
+    public function thank_you(){
+        $data = array();
+        $data['page_title'] = "Cảm ơn Quý Khách";
+        $this->view("checkout.thank_you", $data);
     }
 
 

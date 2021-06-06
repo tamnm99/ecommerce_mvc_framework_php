@@ -11,7 +11,7 @@
         <ul class="sidebar-menu" id="nav-accordion">
 
             <p class="centered">
-                <a href="<?=ROOT?>profile"><img src="<?= ASSETS . THEME ?>admin/img/ui-sam.jpg" class="img-circle"
+                <a href="<?=ROOT?>profile/<?= $data['user_data']->user_url_address ?>"><img src="<?= ASSETS . THEME ?>admin/img/ui-sam.jpg" class="img-circle"
                                             width="60"></a>
             </p>
             <h5 class="centered"><?= $data['user_data']->user_full_name ?></h5>
@@ -59,9 +59,10 @@
                 </ul>
             </li>
 
+           <!-- Link to method users in controllers admin.php-->
             <li class="sub-menu">
                 <a href="<?= ROOT ?>admin/users">
-                    <i class="fa fa-users"></i>
+                    <i class="fas fa-user-cog"></i>
                     <span>Users</span>
                 </a>
                 <ul class="sub">
