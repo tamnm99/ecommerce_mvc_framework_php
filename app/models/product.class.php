@@ -210,9 +210,7 @@ class Product
 
 //Generate url slug of product
     public
-    function str_to_url(
-        $url
-    ) {
+    function str_to_url($url) {
         $url = trim(mb_strtolower($url));
         $url = preg_replace('/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/', 'a', $url);
         $url = preg_replace('/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/', 'e', $url);

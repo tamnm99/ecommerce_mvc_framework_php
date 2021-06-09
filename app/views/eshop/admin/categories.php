@@ -181,10 +181,6 @@
         }
 
         var parent_input = document.querySelector("#parent");
-       /* if (parent_input.value.trim() === "") {
-            alert("Danh mục Cha không được để trống");
-            return;
-        }*/
 
         var category_name = category_name_input.value.trim();
         var parent = parent_input.value.trim();

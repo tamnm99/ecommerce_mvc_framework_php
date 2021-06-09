@@ -10,13 +10,15 @@ class Category
         $DB = Database::newInstance();
         $arr['category_name'] = ucwords($DATA->category_name);
         $arr['parent'] = $DATA->parent;
+        $arr['category_slug'] = $this->str_to_url(strtolower($DATA->category_name));
 
 //        if (!preg_match("/^[a-zA-Z]+$/", trim($arr['category_name']))) {
 //            $_SESSION['error'] = "Tên danh mục chỉ được chứa chữ cái";
 //        }
 
         if (!isset($_SESSION['error']) || $_SESSION['error'] == "") {
-            $query = "INSERT INTO tbl_categories (category_name, parent) VALUES (:category_name, :parent)";
+            $query = "INSERT INTO tbl_categories (category_name, parent, category_slug) 
+                VALUES (:category_name, :parent, :category_slug)";
             $check = $DB->write_db($query, $arr);
 
             if ($check) {
@@ -35,7 +37,9 @@ class Category
         $arr['id'] = $data->id;
         $arr['category_name'] = $data->category;
         $arr['parent'] = $data->parent;
-        $query = "UPDATE tbl_categories SET category_name = :category_name, parent = :parent WHERE id = :id LIMIT 1";
+        $arr['category_slug'] = $this->str_to_url(strtolower($data->category));
+        $query = "UPDATE tbl_categories SET category_name = :category_name,
+                parent = :parent, category_slug = :category_slug WHERE id = :id LIMIT 1";
         $DB->write_db($query, $arr);
     }
 
@@ -61,6 +65,15 @@ class Category
         $id = (int)$id;
         $DB = Database::newInstance();
         $data = $DB->read_db("SELECT * FROM tbl_categories WHERE id = '$id' LIMIT 1");
+        return $data[0];
+    }
+
+    // get one record in tbl_categories
+    public function get_one_by_slug($slug)
+    {
+        $slug = addslashes($slug);
+        $DB = Database::newInstance();
+        $data = $DB->read_db("SELECT * FROM tbl_categories WHERE category_slug LIKE :slug LIMIT 1", ["slug" => $slug]);
         return $data[0];
     }
 
@@ -104,6 +117,24 @@ class Category
             }
         }
         return $result;
+    }
+
+    //Generate url slug of category
+    public
+    function str_to_url(
+        $url
+    ) {
+        $url = trim(mb_strtolower($url));
+        $url = preg_replace('/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/', 'a', $url);
+        $url = preg_replace('/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/', 'e', $url);
+        $url = preg_replace('/(ì|í|ị|ỉ|ĩ)/', 'i', $url);
+        $url = preg_replace('/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/', 'o', $url);
+        $url = preg_replace('/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/', 'u', $url);
+        $url = preg_replace('/(ỳ|ý|ỵ|ỷ|ỹ)/', 'y', $url);
+        $url = preg_replace('/(đ)/', 'd', $url);
+        $url = preg_replace('/[^a-z0-9-\s]/', '', $url);
+        $url = preg_replace('/([\s]+)/', '-', $url);
+        return $url;
     }
 
 }

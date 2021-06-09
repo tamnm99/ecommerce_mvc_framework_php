@@ -20,6 +20,7 @@ class App
     //Constructor app
     public function  __construct()
     {
+
         $url = $this->parseURL();
 
         // set again url, set again index from 0

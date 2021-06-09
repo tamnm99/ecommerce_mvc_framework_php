@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 06, 2021 lúc 04:19 PM
+-- Thời gian đã tạo: Th6 09, 2021 lúc 10:03 AM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -31,21 +31,23 @@ CREATE TABLE `tbl_categories` (
   `id` int(15) NOT NULL,
   `category_name` varchar(30) CHARACTER SET utf8 NOT NULL,
   `disabled` tinyint(1) NOT NULL DEFAULT 0,
-  `parent` int(15) NOT NULL
+  `parent` int(15) NOT NULL,
+  `category_slug` varchar(100) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `tbl_categories`
 --
 
-INSERT INTO `tbl_categories` (`id`, `category_name`, `disabled`, `parent`) VALUES
-(1, 'Nữ', 0, 0),
-(2, 'Nam', 0, 0),
-(3, 'Trẻ Em', 0, 0),
-(4, 'Trẻ Sơ Sinh', 0, 0),
-(5, 'Áo Thun', 0, 1),
-(6, 'Áo Polo', 0, 2),
-(7, 'Quần Shorts', 0, 3);
+INSERT INTO `tbl_categories` (`id`, `category_name`, `disabled`, `parent`, `category_slug`) VALUES
+(1, 'Nữ', 0, 0, 'nu'),
+(2, 'Nam', 0, 0, 'nam'),
+(3, 'Trẻ Em', 0, 0, 'tre-em'),
+(4, 'Trẻ Sơ Sinh', 0, 0, 'tre-so-sinh'),
+(5, 'Áo Thun', 0, 1, 'ao-thun'),
+(6, 'Áo Polo', 0, 2, 'ao-polo'),
+(7, 'Quần Shorts', 0, 3, 'quan-shorts'),
+(8, 'Đầm', 0, 1, 'dam');
 
 -- --------------------------------------------------------
 
@@ -196,6 +198,29 @@ INSERT INTO `tbl_products` (`id`, `user_url_address`, `description`, `category`,
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `tbl_settings`
+--
+
+CREATE TABLE `tbl_settings` (
+  `id` int(11) NOT NULL,
+  `setting` varchar(50) DEFAULT NULL,
+  `value` varchar(2048) DEFAULT NULL,
+  `setting_slug` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_settings`
+--
+
+INSERT INTO `tbl_settings` (`id`, `setting`, `value`, `setting_slug`) VALUES
+(1, 'Số Điện Thoại', '0388489308', 'so_dien_thoai'),
+(2, 'Địa Chỉ Email', 'tamnm1999@gmail.com', 'dia_chi_email'),
+(3, 'Đường Dẫn Facebook', 'https://www.facebook.com/tam.nguyenmanh.737/', 'duong_dan_facebook'),
+(4, 'Đường Dẫn Instagram', 'instagram.com', 'duong_dan_instagram');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `tbl_user`
 --
 
@@ -231,7 +256,8 @@ ALTER TABLE `tbl_categories`
   ADD PRIMARY KEY (`id`),
   ADD KEY `category_name` (`category_name`),
   ADD KEY `parent` (`parent`),
-  ADD KEY `disabled` (`disabled`);
+  ADD KEY `disabled` (`disabled`),
+  ADD KEY `category_slug` (`category_slug`);
 
 --
 -- Chỉ mục cho bảng `tbl_cities`
@@ -277,6 +303,13 @@ ALTER TABLE `tbl_products`
   ADD KEY `description_2` (`description`);
 
 --
+-- Chỉ mục cho bảng `tbl_settings`
+--
+ALTER TABLE `tbl_settings`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `setting` (`setting`);
+
+--
 -- Chỉ mục cho bảng `tbl_user`
 --
 ALTER TABLE `tbl_user`
@@ -295,7 +328,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT cho bảng `tbl_categories`
 --
 ALTER TABLE `tbl_categories`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_cities`
@@ -326,6 +359,12 @@ ALTER TABLE `tbl_order_details`
 --
 ALTER TABLE `tbl_products`
   MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_settings`
+--
+ALTER TABLE `tbl_settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_user`

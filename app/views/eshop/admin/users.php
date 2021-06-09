@@ -37,20 +37,22 @@
     </thead>
 
     <tbody>
-    <?php foreach ($users as $row): ?>
-        <tr style="position: relative; cursor: pointer;">
-            <td> <?= $row->user_id ?></td>
-            <td>
-                <a href="<?= ROOT ?>profile/<?=$row->user_url_address?>">
-                    <?= $row->user_full_name ?>
-                </a>
-            </td>
-            <td><?= $row->user_email ?></td>
-            <td> <?= date("d/m/Y", strtotime($row->user_date_join)) ?></td>
-            <td><?= $row->order_count?></td>
+    <?php if (isset($users) && is_array($users)): ?>
+        <?php foreach ($users as $row): ?>
+            <tr style="position: relative; cursor: pointer;">
+                <td> <?= $row->user_id ?></td>
+                <td>
+                    <a href="<?= ROOT ?>profile/<?= $row->user_url_address ?>">
+                        <?= $row->user_full_name ?>
+                    </a>
+                </td>
+                <td><?= $row->user_email ?></td>
+                <td> <?= date("d/m/Y", strtotime($row->user_date_join)) ?></td>
+                <td><?= $row->order_count ?></td>
 
-        </tr>
-    <?php endforeach; ?>
+            </tr>
+        <?php endforeach; ?>
+    <?php endif; ?>
     </tbody>
 
 </table>

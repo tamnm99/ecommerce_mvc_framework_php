@@ -23,7 +23,7 @@ class Database
    public static function getInstance()
    {
        if (self::$conn) {
-           return self::$conn;
+          /* return self::$conn;*/
        }
 
        //call construct of database

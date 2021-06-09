@@ -14,7 +14,7 @@
                 <a href="<?=ROOT?>profile/<?= $data['user_data']->user_url_address ?>"><img src="<?= ASSETS . THEME ?>admin/img/ui-sam.jpg" class="img-circle"
                                             width="60"></a>
             </p>
-            <h5 class="centered"><?= $data['user_data']->user_full_name ?></h5>
+            <h5 class="centered"><?= ucwords($data['user_data']->user_full_name) ?></h5>
             <h5 class="centered"><?= $data['user_data']->user_email ?></h5>
 
 
@@ -55,7 +55,11 @@
                     <span>Cài Đặt</span>
                 </a>
                 <ul class="sub">
-                    <li><a href="<?= ROOT ?>admin/settings"><i class="fa fa-plus"></i> Slider Ảnh </a></li>
+                    <li><a href="<?= ROOT ?>admin/settings"><i class="fas fa-image"></i> Slider Ảnh </a></li>
+                </ul>
+
+                <ul class="sub">
+                    <li><a href="<?= ROOT ?>admin/settings/socials"><i class="fas fa-share-alt-square"></i> MXH / Liên Hệ  </a></li>
                 </ul>
             </li>
 
@@ -66,8 +70,8 @@
                     <span>Users</span>
                 </a>
                 <ul class="sub">
-                    <li><a href="<?= ROOT ?>admin/users/customers">Khách Hàng </a></li>
-                    <li><a href="<?= ROOT ?>admin/users/admins">Admin </a></li>
+                    <li><a href="<?= ROOT ?>admin/users/customers"><i class="fas fa-users"></i> Khách Hàng </a></li>
+                    <li><a href="<?= ROOT ?>admin/users/admins"><i class="fas fa-user-tie"></i> Admin </a></li>
                 </ul>
             </li>
 

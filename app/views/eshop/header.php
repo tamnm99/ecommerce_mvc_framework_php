@@ -45,14 +45,15 @@
                 <div class="col-sm-8">
                     <div class="contactinfo pull-left">
                         <ul class="nav nav-pills">
-                            <li><a href="#"><i class="fa fa-phone"></i>  0388489308</a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i>  tamnm1999@gmail.com</a></li>
-                            <li><a href="https://github.com/tamnm99"><i class="fa fa-github"></i> https://github.com/tamnm99</a></li>
+                            <li><a href="#"><i class="fa fa-phone"></i> <?=Setting::so_dien_thoai()?></a></li>
+                            <li><a href="#"><i class="fa fa-envelope"></i> <?=Setting::dia_chi_email()?></a></li>
+                            <li><a  target="_new" href="https://github.com/tamnm99"><i class="fa fa-github"></i>
+                                    https://github.com/tamnm99</a></li>
 
                             <!--show user data if user log in success-->
                             <?php if (isset($data['user_data'])): ?>
                                 <li><a href="#"><i class="fa fa fa-user"></i>
-                                        Xin chào <?= $data['user_data']->user_full_name ?> !
+                                        Xin chào <?= ucwords($data['user_data']->user_full_name) ?> !
                                     </a></li>
                             <?php endif; ?>
                         </ul>
@@ -61,8 +62,8 @@
                 <div class="col-sm-4">
                     <div class="social-icons pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="https://www.facebook.com/tam.nguyenmanh.737/"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a target="_new" href="<?=Setting::duong_dan_facebook()?>"><i
+                                            class="fa fa-facebook"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -86,7 +87,8 @@
 
                             <!--user login is Admin, show link to profile.php of admin-->
                             <?php if (isset($data['user_data'])): ?>
-                                <li><a href="<?= ROOT ?>profile/<?= $data['user_data']->user_url_address?>"><i class="fa fa-user"></i>Tài Khoản</a></li>
+                                <li><a href="<?= ROOT ?>profile/<?= $data['user_data']->user_url_address ?>"><i
+                                                class="fa fa-user"></i>Tài Khoản</a></li>
                             <?php endif; ?>
                             <li><a href="<?= ROOT ?>"><i class="fa fa-star"></i> Yêu Thích</a></li>
                             <li><a href="<?= ROOT ?>checkout"><i class="fa fa-crosshairs"></i> Thanh Toán</a></li>
@@ -123,18 +125,28 @@
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
 
-                            <li><a href="<?= ROOT ?>" class="<?= $page_title == "Trang Chủ" ? "active" : "";?>">Trang Chủ</a></li>
-                            <li><a href="<?= ROOT ?>shop" class="<?= $page_title == "Cửa Hàng" ? "active" : "";?>">Cửa Hàng</a></li>
-                            <li><a href="<?= ROOT ?>blog" class="<?= $page_title == "Blog" ? "active" : "";?>">Blog</a></li>
-                            <li><a href="<?= ROOT ?>contact-us" class="<?= $page_title == "Liên Hệ" ? "active" : "";?>">Liên Hệ</a></li>
+                            <li><a href="<?= ROOT ?>" class="<?= $page_title == "Trang Chủ" ? "active" : ""; ?>">Trang
+                                    Chủ</a></li>
+                            <li><a href="<?= ROOT ?>shop" class="<?= $page_title == "Cửa Hàng" ? "active" : ""; ?>">Cửa
+                                    Hàng</a></li>
+                            <li><a href="<?= ROOT ?>blog" class="<?= $page_title == "Blog" ? "active" : ""; ?>">Blog</a>
+                            </li>
+                            <li><a href="<?= ROOT ?>contact-us"
+                                   class="<?= $page_title == "Liên Hệ" ? "active" : ""; ?>">Liên Hệ</a></li>
                         </ul>
                     </div>
                 </div>
+
+              <!--  Page home and shop will show search bar-->
+                <?php if(isset($show_search)):?>
                 <div class="col-sm-3">
-                    <div class="search_box pull-right">
-                        <input type="text" placeholder="Tìm Kiếm"/>
-                    </div>
+                    <form method="GET">
+                        <div class="search_box pull-right">
+                            <input name ="find" type="text" placeholder="Tìm Kiếm"/>
+                        </div>
+                    </form>
                 </div>
+                <?php endif;?>
             </div>
         </div>
     </div>

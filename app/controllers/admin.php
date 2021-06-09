@@ -173,4 +173,34 @@ class Admin extends Controller
         $this->view("admin/users", $data);
     }
 
+    //Method of Config setting in admin page
+    public function settings($type){
+
+        // Load class name 'user' exists in folder models
+        $User = $this->load_model('User');
+
+        $Settings = new Setting();
+
+        //check login success or not, user has rank 'Admin' or not
+        $user_data = $User->check_login(true, ["Admin"]);
+
+        //if success get information login
+        if (is_object($user_data)) {
+            $data['user_data'] = $user_data;
+        }
+
+        //If click button "Lưu Cài Đặt", save setting in form into database
+        if(count($_POST) > 0){
+            $errors = $Settings->save_settings($_POST);
+            header("Location: " .ROOT. "admin/settings/socials");
+            die;
+        }
+
+        //get all object of tbl_settings from database
+        $data['settings'] = $Settings->get_all_settings();
+
+        $data['page_title'] = "Admin - Admin";
+        $this->view("admin/socials", $data);
+    }
+
 }

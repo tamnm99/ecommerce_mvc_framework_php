@@ -19,11 +19,27 @@ Class Home extends Controller{
 			$data['user_data'] = $user_data;
 		}
 
-        //get product in DB to show Webpage
         $DB = Database::newInstance();
 
+        //Check if user type in search bar
+        $search = false;
+        if(isset($_GET['find'])){
+            $find = addslashes($_GET['find']);
+            $search = true;
+        }
+
         //$ROWS: all products exists in DB
-        $ROWS = $DB->read_db("SELECT * FROM tbl_products");
+        if($search){
+            $arr['description'] =  "%" . $find . "%";
+            $ROWS = $DB->read_db("SELECT * FROM tbl_products WHERE description LIKE :description ", $arr);
+
+        }else{
+            $ROWS = $DB->read_db("SELECT * FROM tbl_products");
+        }
+
+        //Variable show_search will show search bar in webpage
+        $data['show_search'] = true;
+
         $data['page_title'] = "Trang Chủ";
 
         if($ROWS){
@@ -33,6 +49,10 @@ Class Home extends Controller{
             }
         }
         $data['ROWS'] = $ROWS;
+
+        //Get all categories
+        $category= $this->load_model('Category');
+        $data['categories'] = $category->get_all();
 
         //show index.php with data
         $this->view("index", $data);
