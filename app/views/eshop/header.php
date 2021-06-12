@@ -23,6 +23,8 @@
     <script src="<?= ASSETS . THEME ?>js/respond.min.js"></script>
     <![endif] -->
 
+    <!-- My icon for font awesome-->
+    <script src="https://kit.fontawesome.com/2818147cbc.js" crossorigin="anonymous"></script>
 
     <link rel="shortcut icon" href="<?= ASSETS . THEME ?>images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144"
@@ -64,6 +66,8 @@
                         <ul class="nav navbar-nav">
                             <li><a target="_new" href="<?=Setting::duong_dan_facebook()?>"><i
                                             class="fa fa-facebook"></i></a></li>
+                            <li><a target="_new" href="<?=Setting::duong_dan_instagram()?>"><i
+                                            class="fa fa-instagram"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -129,10 +133,10 @@
                                     Chủ</a></li>
                             <li><a href="<?= ROOT ?>shop" class="<?= $page_title == "Cửa Hàng" ? "active" : ""; ?>">Cửa
                                     Hàng</a></li>
-                            <li><a href="<?= ROOT ?>blog" class="<?= $page_title == "Blog" ? "active" : ""; ?>">Blog</a>
+                            <li><a href="<?= ROOT ?>blog" class="<?= $page_title == "Bài Viết" ? "active" : ""; ?>">Blog</a>
                             </li>
                             <li><a href="<?= ROOT ?>contact-us"
-                                   class="<?= $page_title == "Liên Hệ" ? "active" : ""; ?>">Liên Hệ</a></li>
+                                   class="<?= $page_title == "Liên Hệ với Chúng Tôi" ? "active" : ""; ?>">Liên Hệ</a></li>
                         </ul>
                     </div>
                 </div>

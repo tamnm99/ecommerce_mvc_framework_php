@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 09, 2021 lúc 10:03 AM
+-- Thời gian đã tạo: Th6 12, 2021 lúc 05:21 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -94,6 +94,29 @@ INSERT INTO `tbl_districts` (`id`, `parent`, `district`, `disabled`) VALUES
 (4, 2, 'Quận 2', 0),
 (5, 3, 'Lục Ngạn', 0),
 (6, 3, 'Yên Dũng', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_message`
+--
+
+CREATE TABLE `tbl_message` (
+  `id` int(11) NOT NULL,
+  `client_name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `subject` varchar(100) NOT NULL,
+  `message` varchar(100) NOT NULL,
+  `date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_message`
+--
+
+INSERT INTO `tbl_message` (`id`, `client_name`, `email`, `subject`, `message`, `date`) VALUES
+(1, 'Hoàng Đăng Khôi', 'khoihd@gmail.com', 'Hỏi về Sản Phẩm A ?', 'Tôi muốn hỏi thời điểm Sản Phẩm A về lại hàng là khi nào. Nếu về hàng hãy email cho tôi.', '2021-06-12 15:50:44'),
+(2, 'Nghiêm Thị Hương Ly', 'huonglynt@gmail.com', 'Sản Phẩm Sale', 'Lúc nào thì sẽ có sự kiện sale cho các sản phẩm', '2021-06-12 16:38:56');
 
 -- --------------------------------------------------------
 
@@ -216,7 +239,33 @@ INSERT INTO `tbl_settings` (`id`, `setting`, `value`, `setting_slug`) VALUES
 (1, 'Số Điện Thoại', '0388489308', 'so_dien_thoai'),
 (2, 'Địa Chỉ Email', 'tamnm1999@gmail.com', 'dia_chi_email'),
 (3, 'Đường Dẫn Facebook', 'https://www.facebook.com/tam.nguyenmanh.737/', 'duong_dan_facebook'),
-(4, 'Đường Dẫn Instagram', 'instagram.com', 'duong_dan_instagram');
+(4, 'Đường Dẫn Instagram', 'https://www.instagram.com/tam.nguyenmanh.737/', 'duong_dan_instagram'),
+(5, 'Địa Chỉ', 'xóm 2, làng Triều Đông, xã Tân Minh, huyện Thường Tín, TP. Hà Nội', 'dia_chi');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_slider`
+--
+
+CREATE TABLE `tbl_slider` (
+  `id` int(11) NOT NULL,
+  `header1_text` varchar(255) NOT NULL,
+  `header2_text` varchar(255) DEFAULT NULL,
+  `description` varchar(200) NOT NULL,
+  `link` varchar(200) DEFAULT NULL,
+  `image` varchar(500) DEFAULT NULL,
+  `image2` varchar(500) DEFAULT NULL,
+  `disabled` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_slider`
+--
+
+INSERT INTO `tbl_slider` (`id`, `header1_text`, `header2_text`, `description`, `link`, `image`, `image2`, `disabled`) VALUES
+(1, 'Chào Hè 2021', 'Sale up to 70% toàn bộ các Sản Phẩm', 'Các Sản Phẩm dành cho nam sale tới 50%                 ', 'http://localhost/ecommerce_mvc/public/product_details/nam-airism-fly-front-polo-shirt', 'uploads/eqk0W3rJqJtb5Y4JrO1svdXt9AtZCrXmFYXUh7Nz8gUUyFDY62n6rYD3uUc3.jpg', '', 0),
+(2, 'Chào Hè 2021', 'Sale up to 70% toàn bộ các Sản Phẩm', 'Các Sản Phẩm dành cho bé trai sale up tới 30%                               ', 'http://localhost/ecommerce_mvc/public/product_details/tre-em-quan-lung-dry-ex', 'uploads/25p2vArTo6WpyzwoCCH2uDNnCoijesjUhAa3Taz0ElXacxqK7bxQXC0fACoc.jpg', '', 0);
 
 -- --------------------------------------------------------
 
@@ -273,6 +322,15 @@ ALTER TABLE `tbl_districts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Chỉ mục cho bảng `tbl_message`
+--
+ALTER TABLE `tbl_message`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `email` (`email`),
+  ADD KEY `subject` (`subject`),
+  ADD KEY `client_name` (`client_name`);
+
+--
 -- Chỉ mục cho bảng `tbl_orders`
 --
 ALTER TABLE `tbl_orders`
@@ -310,6 +368,13 @@ ALTER TABLE `tbl_settings`
   ADD KEY `setting` (`setting`);
 
 --
+-- Chỉ mục cho bảng `tbl_slider`
+--
+ALTER TABLE `tbl_slider`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `disabled` (`disabled`);
+
+--
 -- Chỉ mục cho bảng `tbl_user`
 --
 ALTER TABLE `tbl_user`
@@ -343,6 +408,12 @@ ALTER TABLE `tbl_districts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT cho bảng `tbl_message`
+--
+ALTER TABLE `tbl_message`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT cho bảng `tbl_orders`
 --
 ALTER TABLE `tbl_orders`
@@ -364,7 +435,13 @@ ALTER TABLE `tbl_products`
 -- AUTO_INCREMENT cho bảng `tbl_settings`
 --
 ALTER TABLE `tbl_settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_slider`
+--
+ALTER TABLE `tbl_slider`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_user`

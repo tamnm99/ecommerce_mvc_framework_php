@@ -15,8 +15,8 @@
                 </a>
                 <h2><?= number_format($data->price, 0, ',') ?> ₫</h2>
                 <p style="height: 50px"><?= $data->description ?></p>
-                <a href="<?= ROOT ?>add_to_cart/<?= $data->id ?>" class="btn btn-default add-to-cart" style="padding-top:20px">
-                    <iclass="fa fa-shopping-cart"></i>Thêm vào Giỏ
+                <a href="<?= ROOT ?>add_to_cart/<?= $data->id ?>" class="btn btn-default add-to-cart">
+                    <i class="fa fa-shopping-cart"></i>Thêm vào Giỏ
                 </a>
             </div>
         </div>

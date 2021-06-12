@@ -12,9 +12,9 @@ class Category
         $arr['parent'] = $DATA->parent;
         $arr['category_slug'] = $this->str_to_url(strtolower($DATA->category_name));
 
-//        if (!preg_match("/^[a-zA-Z]+$/", trim($arr['category_name']))) {
-//            $_SESSION['error'] = "Tên danh mục chỉ được chứa chữ cái";
-//        }
+        if (!preg_match("/^[a-zA-Z]+$/", trim($arr['category_name']))) {
+            $_SESSION['error'] = "Tên danh mục chỉ được chứa chữ cái";
+        }
 
         if (!isset($_SESSION['error']) || $_SESSION['error'] == "") {
             $query = "INSERT INTO tbl_categories (category_name, parent, category_slug) 

@@ -1078,425 +1078,522 @@
     <table id="342" parent="7" name="tbl_categories"/>
     <table id="343" parent="7" name="tbl_cities"/>
     <table id="344" parent="7" name="tbl_districts"/>
-    <table id="345" parent="7" name="tbl_order_details"/>
-    <table id="346" parent="7" name="tbl_orders"/>
-    <table id="347" parent="7" name="tbl_products"/>
-    <table id="348" parent="7" name="tbl_settings"/>
-    <table id="349" parent="7" name="tbl_user"/>
-    <column id="350" parent="342" name="id">
+    <table id="345" parent="7" name="tbl_message"/>
+    <table id="346" parent="7" name="tbl_order_details"/>
+    <table id="347" parent="7" name="tbl_orders"/>
+    <table id="348" parent="7" name="tbl_products"/>
+    <table id="349" parent="7" name="tbl_settings"/>
+    <table id="350" parent="7" name="tbl_slider"/>
+    <table id="351" parent="7" name="tbl_user"/>
+    <column id="352" parent="342" name="id">
       <Position>1</Position>
       <DataType>int(15)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="351" parent="342" name="category_name">
+    <column id="353" parent="342" name="category_name">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="352" parent="342" name="disabled">
+    <column id="354" parent="342" name="disabled">
       <Position>3</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="353" parent="342" name="parent">
+    <column id="355" parent="342" name="parent">
       <Position>4</Position>
       <DataType>int(15)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="354" parent="342" name="category_slug">
+    <column id="356" parent="342" name="category_slug">
       <Position>5</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <index id="355" parent="342" name="category_name">
+    <index id="357" parent="342" name="category_name">
       <ColNames>category_name</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="356" parent="342" name="disabled">
+    <index id="358" parent="342" name="disabled">
       <ColNames>disabled</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="357" parent="342" name="parent">
+    <index id="359" parent="342" name="parent">
       <ColNames>parent</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="358" parent="342" name="category_slug">
+    <index id="360" parent="342" name="category_slug">
       <ColNames>category_slug</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="359" parent="342" name="PRIMARY">
+    <key id="361" parent="342" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="360" parent="343" name="id">
+    <column id="362" parent="343" name="id">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="361" parent="343" name="city">
+    <column id="363" parent="343" name="city">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="362" parent="343" name="disabled">
+    <column id="364" parent="343" name="disabled">
       <Position>3</Position>
       <DataType>tinyint(4)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <index id="363" parent="343" name="disabled">
+    <index id="365" parent="343" name="disabled">
       <ColNames>disabled</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="364" parent="343" name="PRIMARY">
+    <key id="366" parent="343" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="365" parent="344" name="id">
+    <column id="367" parent="344" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="366" parent="344" name="parent">
+    <column id="368" parent="344" name="parent">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="367" parent="344" name="district">
+    <column id="369" parent="344" name="district">
       <Position>3</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="368" parent="344" name="disabled">
+    <column id="370" parent="344" name="disabled">
       <Position>4</Position>
       <DataType>tinyint(4)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <key id="369" parent="344" name="PRIMARY">
+    <key id="371" parent="344" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="370" parent="345" name="id">
+    <column id="372" parent="345" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="373" parent="345" name="client_name">
+      <Position>2</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="374" parent="345" name="email">
+      <Position>3</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="375" parent="345" name="subject">
+      <Position>4</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="376" parent="345" name="message">
+      <Position>5</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="377" parent="345" name="date">
+      <Position>6</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="378" parent="345" name="client_name">
+      <ColNames>client_name</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="379" parent="345" name="email">
+      <ColNames>email</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="380" parent="345" name="subject">
+      <ColNames>subject</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="381" parent="345" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="382" parent="346" name="id">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="371" parent="345" name="order_id">
+    <column id="383" parent="346" name="order_id">
       <Position>2</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="372" parent="345" name="quantity">
+    <column id="384" parent="346" name="quantity">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="373" parent="345" name="description">
+    <column id="385" parent="346" name="description">
       <Position>4</Position>
       <DataType>varchar(300)|0s</DataType>
       <NotNull>1</NotNull>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="374" parent="345" name="amount">
+    <column id="386" parent="346" name="amount">
       <Position>5</Position>
       <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="375" parent="345" name="total">
+    <column id="387" parent="346" name="total">
       <Position>6</Position>
       <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="376" parent="345" name="product_id">
+    <column id="388" parent="346" name="product_id">
       <Position>7</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="377" parent="345" name="order_id">
+    <index id="389" parent="346" name="order_id">
       <ColNames>order_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="378" parent="345" name="description">
+    <index id="390" parent="346" name="description">
       <ColNames>description</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="379" parent="345" name="PRIMARY">
+    <key id="391" parent="346" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="380" parent="346" name="id">
+    <column id="392" parent="347" name="id">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="381" parent="346" name="user_url_address">
+    <column id="393" parent="347" name="user_url_address">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="382" parent="346" name="delivery_address">
+    <column id="394" parent="347" name="delivery_address">
       <Position>3</Position>
       <DataType>varchar(1024)|0s</DataType>
     </column>
-    <column id="383" parent="346" name="total">
+    <column id="395" parent="347" name="total">
       <Position>4</Position>
       <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="384" parent="346" name="city">
+    <column id="396" parent="347" name="city">
       <Position>5</Position>
       <DataType>varchar(50)|0s</DataType>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="385" parent="346" name="district">
+    <column id="397" parent="347" name="district">
       <Position>6</Position>
       <DataType>varchar(50)|0s</DataType>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="386" parent="346" name="zip">
+    <column id="398" parent="347" name="zip">
       <Position>7</Position>
       <DataType>varchar(6)|0s</DataType>
     </column>
-    <column id="387" parent="346" name="tax">
+    <column id="399" parent="347" name="tax">
       <Position>8</Position>
       <DataType>double|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="388" parent="346" name="shipping">
+    <column id="400" parent="347" name="shipping">
       <Position>9</Position>
       <DataType>double|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="389" parent="346" name="date">
+    <column id="401" parent="347" name="date">
       <Position>10</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="390" parent="346" name="session_id">
+    <column id="402" parent="347" name="session_id">
       <Position>11</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="391" parent="346" name="phone_number">
+    <column id="403" parent="347" name="phone_number">
       <Position>12</Position>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="392" parent="346" name="note">
+    <column id="404" parent="347" name="note">
       <Position>13</Position>
       <DataType>varchar(255)|0s</DataType>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <index id="393" parent="346" name="user_id">
+    <index id="405" parent="347" name="user_id">
       <ColNames>user_url_address</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="394" parent="346" name="user_url_address">
+    <index id="406" parent="347" name="user_url_address">
       <ColNames>user_url_address</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="395" parent="346" name="date">
+    <index id="407" parent="347" name="date">
       <ColNames>date</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="396" parent="346" name="session_id">
+    <index id="408" parent="347" name="session_id">
       <ColNames>session_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="397" parent="346" name="PRIMARY">
+    <key id="409" parent="347" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="398" parent="347" name="id">
+    <column id="410" parent="348" name="id">
       <Position>1</Position>
       <DataType>int(15)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="399" parent="347" name="user_url_address">
+    <column id="411" parent="348" name="user_url_address">
       <Position>2</Position>
       <DataType>varchar(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="400" parent="347" name="description">
+    <column id="412" parent="348" name="description">
       <Position>3</Position>
       <DataType>varchar(300)|0s</DataType>
       <NotNull>1</NotNull>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="401" parent="347" name="category">
+    <column id="413" parent="348" name="category">
       <Position>4</Position>
       <DataType>int(15)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="402" parent="347" name="price">
+    <column id="414" parent="348" name="price">
       <Position>5</Position>
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="403" parent="347" name="quantity">
+    <column id="415" parent="348" name="quantity">
       <Position>6</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="404" parent="347" name="image">
+    <column id="416" parent="348" name="image">
       <Position>7</Position>
       <DataType>varchar(500)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="405" parent="347" name="image2">
+    <column id="417" parent="348" name="image2">
       <Position>8</Position>
       <DataType>varchar(500)|0s</DataType>
     </column>
-    <column id="406" parent="347" name="image3">
+    <column id="418" parent="348" name="image3">
       <Position>9</Position>
       <DataType>varchar(500)|0s</DataType>
     </column>
-    <column id="407" parent="347" name="image4">
+    <column id="419" parent="348" name="image4">
       <Position>10</Position>
       <DataType>varchar(500)|0s</DataType>
     </column>
-    <column id="408" parent="347" name="date">
+    <column id="420" parent="348" name="date">
       <Position>11</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="409" parent="347" name="slug">
+    <column id="421" parent="348" name="slug">
       <Position>12</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <index id="410" parent="347" name="description">
+    <index id="422" parent="348" name="description">
       <ColNames>description</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="411" parent="347" name="description_2">
+    <index id="423" parent="348" name="description_2">
       <ColNames>description</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="412" parent="347" name="price">
+    <index id="424" parent="348" name="price">
       <ColNames>price</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="413" parent="347" name="quantity">
+    <index id="425" parent="348" name="quantity">
       <ColNames>quantity</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="414" parent="347" name="date">
+    <index id="426" parent="348" name="date">
       <ColNames>date</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="415" parent="347" name="slag">
+    <index id="427" parent="348" name="slag">
       <ColNames>slug</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="416" parent="347" name="PRIMARY">
+    <key id="428" parent="348" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="417" parent="348" name="id">
+    <column id="429" parent="349" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="418" parent="348" name="setting">
+    <column id="430" parent="349" name="setting">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="419" parent="348" name="value">
+    <column id="431" parent="349" name="value">
       <Position>3</Position>
       <DataType>varchar(2048)|0s</DataType>
     </column>
-    <column id="420" parent="348" name="setting_slug">
+    <column id="432" parent="349" name="setting_slug">
       <Position>4</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <index id="421" parent="348" name="setting">
+    <index id="433" parent="349" name="setting">
       <ColNames>setting</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="422" parent="348" name="PRIMARY">
+    <key id="434" parent="349" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="423" parent="349" name="user_id">
+    <column id="435" parent="350" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="436" parent="350" name="header1_text">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="437" parent="350" name="header2_text">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="438" parent="350" name="description">
+      <Position>4</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="439" parent="350" name="link">
+      <Position>5</Position>
+      <DataType>varchar(200)|0s</DataType>
+    </column>
+    <column id="440" parent="350" name="image">
+      <Position>6</Position>
+      <DataType>varchar(500)|0s</DataType>
+    </column>
+    <column id="441" parent="350" name="image2">
+      <Position>7</Position>
+      <DataType>varchar(500)|0s</DataType>
+    </column>
+    <column id="442" parent="350" name="disabled">
+      <Position>8</Position>
+      <DataType>tinyint(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <index id="443" parent="350" name="disabled">
+      <ColNames>disabled</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="444" parent="350" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="445" parent="351" name="user_id">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="424" parent="349" name="user_url_address">
+    <column id="446" parent="351" name="user_url_address">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="425" parent="349" name="user_full_name">
+    <column id="447" parent="351" name="user_full_name">
       <Position>3</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="426" parent="349" name="user_email">
+    <column id="448" parent="351" name="user_email">
       <Position>4</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="427" parent="349" name="user_password">
+    <column id="449" parent="351" name="user_password">
       <Position>5</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="428" parent="349" name="user_rank">
+    <column id="450" parent="351" name="user_rank">
       <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="429" parent="349" name="user_date_join">
+    <column id="451" parent="351" name="user_date_join">
       <Position>7</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="430" parent="349" name="user_id">
+    <index id="452" parent="351" name="user_id">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="431" parent="349" name="user_url_address">
+    <index id="453" parent="351" name="user_url_address">
       <ColNames>user_url_address</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="432" parent="349" name="user_email">
+    <index id="454" parent="351" name="user_email">
       <ColNames>user_email</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="433" parent="349" name="user_rank">
+    <index id="455" parent="351" name="user_rank">
       <ColNames>user_rank</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="434" parent="349" name="user_date_join">
+    <index id="456" parent="351" name="user_date_join">
       <ColNames>user_date_join</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="435" parent="349" name="PRIMARY">
+    <key id="457" parent="351" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user_id</ColNames>
       <Primary>1</Primary>

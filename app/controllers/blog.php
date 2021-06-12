@@ -1,8 +1,8 @@
 <?php
 
-// this is the file controller of webpage Home
+// this is the file controller of webpage Blog
 
-Class Home extends Controller{
+Class Blog extends Controller{
 
     //index show file html
     public function index(){
@@ -16,8 +16,8 @@ Class Home extends Controller{
 
         //if success get information login
         if(is_object($user_data)){
-			$data['user_data'] = $user_data;
-		}
+            $data['user_data'] = $user_data;
+        }
 
         $DB = Database::newInstance();
 
@@ -40,7 +40,7 @@ Class Home extends Controller{
         //Variable show_search will show search bar in webpage
         $data['show_search'] = true;
 
-        $data['page_title'] = "Trang Chủ";
+        $data['page_title'] = "Bài Viết";
 
         if($ROWS){
             foreach ($ROWS as $key => $row){
@@ -65,7 +65,7 @@ Class Home extends Controller{
         }
 
         //show index.php with data
-        $this->view("index", $data);
+        $this->view("blog", $data);
     }
 
 
